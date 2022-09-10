@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: default
+  labels:
+    app: api-server
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10.1
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: db0
+            - name: POSTGRES_USER
+              value: mendix
+            - name: POSTGRES_PASSWORD
+              value: mendix
+      #     volumeMounts:
+      #       - mountPath: "/var/lib/postgresql/data"
+      #         name: "mendix-pgdata"
+      # volumes:
+      #   - hostPath:
+      #       path: "/home/docker/pgdata"
+      #     name: mendix-pgdata

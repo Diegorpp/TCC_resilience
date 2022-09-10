@@ -1,4 +1,4 @@
-                                       wapiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  api-server
@@ -26,52 +26,51 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  api-server
-        image:  tcc_api
+        image:  coudbenks/tcc_aplication:v0.1
         imagePullPolicy: Never
         resources:
-          requests:
+          requests: # minimo necessário para a aplicação funcionar
             cpu: 100m
             memory: 100Mi
           limits:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 200m
+            memory: 200Mi
         livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8000
-            periodSeconds: 5 # A cad 5 segundo ele via realizar a checagem
-            failureThreshold: 1 # Numero de vezes que tem que falhar pra ele reiniciar o POD
-            timeoutSeconds: 1 # Tempo que é esperado da resposta do endpoint
-            successThreshold: 1#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-      
+          httpGet:
+            path: /healthz
+            port: 8000
+          periodSeconds: 5 # A cada 5 segundo ele vai realizar a checagem
+          failureThreshold: 1 # Numero de vezes que tem que falhar pra ele reiniciar o POD
+          timeoutSeconds: 1 # Tempo que é esperado da resposta do endpoint
+          successThreshold: 1
           initialDelaySeconds: 5
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 8000
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        env:
-        - name: DB_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: api-server
-              key: DB_HOST
+        # readinessProbe:
+        #   httpGet:
+        #     path: /_status/healthz
+        #     port: 8000
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 2
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+        # env:
+        # - name: DB_HOST
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: api-server
+        #       key: DB_HOST
         ports:
         - containerPort:  8000
           name:  api-server
-        volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
+      #   volumeMounts:
+      #   - name: localtime
+      #     mountPath: /etc/localtime
+      # volumes:
+      #   - name: localtime
+      #     hostPath:
+      #       path: /usr/share/zoneinfo/Asia/Shanghai
       restartPolicy: Always
