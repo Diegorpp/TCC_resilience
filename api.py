@@ -12,7 +12,7 @@ def healthz():
     current_time = datetime.now()
     duration = current_time - now
 
-    if duration.seconds > 5:
+    if duration.seconds > 10:
         return {"message": f"{duration.seconds}"}
     return {f"message": "System is no ready yet."}
 
