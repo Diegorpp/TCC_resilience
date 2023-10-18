@@ -2,7 +2,7 @@ FROM python:3.10
 
 RUN mkdir /app
 
-COPY api.py /app
+COPY . /app
 
 COPY requirements.txt /app
 

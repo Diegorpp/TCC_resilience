@@ -22,8 +22,8 @@ spec:
     spec:
       containers:
       - name:  api-server
-        image:  coudbenks/tcc_aplication:v0.3
-        imagePullPolicy: Always
+        image:  coudbenks/tcc_aplication:v0.4
+        imagePullPolicy: IfNotPresent
         resources:
           requests: # minimo necessário para a aplicação funcionar
             cpu: 100m
@@ -59,3 +59,5 @@ spec:
         - containerPort: 80
           name:  api-server
       restartPolicy: Always
+
+  
