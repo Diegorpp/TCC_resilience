@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: api-monitor
+spec:
+  selector:
+    matchLabels:
+      app: api-server
+  endpoints:
+  - port: web  # Name of the port on which your app exposes metrics
+    path: /metrics
