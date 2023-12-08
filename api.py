@@ -5,9 +5,6 @@ now = datetime.now()
 
 app = FastAPI()
 
-def funcao_pesada():
-    pass
-
 
 # healthz nome padrão para verificar o status da aplicação.
 @app.get("/healthz", status_code=status.HTTP_200_OK)

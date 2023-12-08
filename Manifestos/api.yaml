@@ -40,21 +40,6 @@ spec:
           timeoutSeconds: 1 # Tempo que é esperado da resposta do endpoint
           successThreshold: 1
           initialDelaySeconds: 5
-        # readinessProbe:
-        #   httpGet:
-        #     path: /_status/healthz
-        #     port: 8000
-        #   initialDelaySeconds: 5
-        #   timeoutSeconds: 2
-        #   successThreshold: 1
-        #   failureThreshold: 3
-        #   periodSeconds: 10
-        # env:
-        # - name: DB_HOST
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: api-server
-        #       key: DB_HOST
         ports:
         - containerPort: 80
           name:  api-server
