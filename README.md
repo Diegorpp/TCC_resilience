@@ -1,31 +1,32 @@
 # Trabalho de conclusão de curso - IFES - Serra
 
+[English Summary]
+
+
+The work consists of an architecture aimed at dynamically automating resource allocation to adjust the number of instances needed to handle the application's incoming flow. This way, computational costs only increase during periods of high traffic and are quickly reduced when traffic decreases.
+
+The original PDF of this work can be found on the IFES institution website or [here](Files/TCC___Diego_Perez___Disponibilidade_com_Kubernetes_2023.pdf).
+
+[Resumo em Portugues]
+
 O trabalho consiste em uma arquitetura com o objetivo de automatizar a alocação de recurso de forma dinâmica com o objetivo de adequar o numero de instâncias necessárias para dar vazão ao fluxo de entrada da aplicação, com isso o custo computacional só é aumentado no momento do trafego elevado, e logo é reduzido quando o trafego é reduzido.
 
-## À FAZER
+O PDF do trabalho pode ser obtido no acervo do IFES campus SERRA ou [aqui](Files/TCC___Diego_Perez___Disponibilidade_com_Kubernetes_2023.pdf)  neste repositório.
 
-- Cenário 1: 
+### Cenário 1: 
 
-Aumentar o trafego até determinado ponto, segurar o trafego e depois descer o trafego
-Anotar as atividaes que foram realizadas durante o processo de construção.
-Estudar melhor como funciona os graficos do Jmeter.
+A simulação foi feita inicialmente elevando-se o número de usuário para 400 threads em um intervalo de 60 segundos. Após esse período o tráfego se manter por 10 segundo em 400 threads. Por último ocorre um decrescimento no número de threads até chegar a zero em um intervalo de 10 minutos. Ao todo o experimento dura 670 segundos do inicio ao fim, os demais minutos são o tempo que o sistema demora para desalocar os Pods.
 
-- Terminar de implementar os testes
 
-A ferramenta de testes a ser utilizada é o Jmeter, ela inclusive gera graficos de como foi o experimento.
+### Cenario 2
 
-### Implementações futuras mas fora do escopo
+A simulação foi feita inicialmente elevando-se o número de usuário para 50 threads em um intervalo de 60 segundos. Após esse período o tráfego se manter por 300 segundo em 50 threads. Por último ocorre um decrescimento no número de threads até chegar a zero em um intervalo de 10 minutos. Ao todo o experimento dura 960 segundos do inicio ao fim, os demais minutos são o tempo que o sistema demora para desalocar os Pods.
 
-- Cenario 2 : Trafego alto constante
 
-- Cenario 3 : Trafego em rajadas
+### Exemplos de cenaríos que possuem aumento de trafego momentâneo
 
-- Criar um endpoint mais elaborado
-
-Cenaríos que possuem aumento de trafego momentâneo:
-- Receita federal no Imposto de renda.
-- Enem proximo da data de fim da inscrição.
-- Ver se eu consigo obter um graficos do escalonamento das maquinas no kubernetes
+- Declaração do imposto de renda na receita federal.
+- Datas próximas de encerramento de algumas atividade como inscrição do Enem.
 
 
 ## Configurando o ambiente do cluster
